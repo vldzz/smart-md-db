@@ -1,2 +1,1 @@
-# smart-md-db
-## Laborator Nr.1 ABDD
+# Laborator Nr.1 ABDD
