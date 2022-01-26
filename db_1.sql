@@ -13,34 +13,34 @@ CREATE TABLE color (
 
 CREATE TABLE brands (
     brand_id   INT PRIMARY KEY,
-    brand_name NVARCHAR(50)
+    brand_name NVARCHAR(50) NOT NULL
 );
 
 CREATE TABLE models (
     model_id   INT PRIMARY KEY,
-    model_name NVARCHAR(50)
+    model_name NVARCHAR(50) NOT NULL
 );
 
 CREATE TABLE os (
     os_id   INT PRIMARY KEY,
-    os_name NVARCHAR(50)
+    os_name NVARCHAR(50) NOT NULL
 );
 
 CREATE TABLE processors (
     processor_id   INT PRIMARY KEY,
-    processor_name NVARCHAR(50)
+    processor_name NVARCHAR(50) NOT NULL
 );
 
 
 CREATE TABLE display_resolution (
     display_res_id INT PRIMARY KEY,
-    display_res    NVARCHAR(50)
+    display_res    NVARCHAR(50) NOT NULL
 );
 
 CREATE TABLE products (
     product_id    INT PRIMARY KEY,
     product_name  NVARCHAR(150) NOT NULL, #TODO: Replace with auto (brand + model + Ram + Memory + color)
-    product_price DOUBLE,
+    product_price DOUBLE        NOT NULL,
     color_id      INT,                    #FK
 
     FOREIGN KEY (color_id) REFERENCES color (color_id)
@@ -55,13 +55,13 @@ CREATE TABLE phones (
     processor_id          INT,          #FK
     front_camera          NVARCHAR(50), #FK
     back_camera           NVARCHAR(50), #FK
-    sim_num               INT DEFAULT 1,
-    battery_capacity      INT    NOT NULL,
-    screen_diag           DOUBLE NOT NULL,
-    ram                   INT    NOT NULL,
-    internal_memory       INT    NOT NULL,
+    sim_num               INT DEFAULT 1 NOT NULL,
+    battery_capacity      INT           NOT NULL,
+    screen_diag           DOUBLE        NOT NULL,
+    ram                   INT           NOT NULL,
+    internal_memory       INT           NOT NULL,
     display_resolution_id INT,          #FK
-    max_frequency         REAL   NOT NULL,
+    max_frequency         REAL          NOT NULL,
 
     FOREIGN KEY (product_id) REFERENCES products (product_id),
     FOREIGN KEY (brand_id) REFERENCES brands (brand_id),
@@ -76,11 +76,11 @@ CREATE TABLE notebooks (
     product_id            INT, #FK
     brand_id              INT, #FK
     model_id              INT, #FK
-    dedicated_videocard   BIT DEFAULT 0,
+    dedicated_videocard   BIT DEFAULT 0 NOT NULL,
     processor_id          INT, #FK
-    memory                INT,
-    ram                   INT,
-    screen_diag           DOUBLE NOT NULL,
+    memory                INT           NOT NULL,
+    ram                   INT           NOT NULL,
+    screen_diag           DOUBLE        NOT NULL,
     display_resolution_id INT, #FK
     os_id                 INT, #FK
 
@@ -96,8 +96,8 @@ CREATE TABLE mouses (
     id          INT PRIMARY KEY AUTO_INCREMENT,
     product_id  INT, #FK
     brand_id    INT, #FK
-    is_gaming   BIT,
-    is_wireless BIT,
+    is_gaming   BIT NOT NULL,
+    is_wireless BIT NOT NULL,
 
     FOREIGN KEY (product_id) REFERENCES products (product_id),
     FOREIGN KEY (brand_id) REFERENCES brands (brand_id)
